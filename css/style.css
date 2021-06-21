@@ -1,0 +1,56 @@
+:root {
+    --bg-color: #363027;
+    --bg-card-color: #416964;
+    --resistor-color: #F5DEB3;
+    --font-color-title: #98F5E8;
+    --font-color-text: whitesmoke;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 400;
+}
+
+.calculator-resistor {
+    display: block;
+    margin: 0 auto;
+    margin-top: 100px;
+    height: 610px;
+    width: 800px;
+    padding: 50px 70px;
+    border-radius: 12px;
+    background-color: var(--bg-card-color);
+}
+.calculator-resistor__title {
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    font-size: 2.8rem;
+    color: var(--font-color-title);
+    font-weight: 700;
+}
+.instructions {
+    margin-bottom: 12px;
+    font-size: 1.8rem;
+    line-height: 2.0rem;
+    color: var(--font-color-text);
+}
+
+.resistor{
+    display: block;
+    height: 250px;
+    width: 610px;
+    margin: 50px auto;
+    background-color: var(--resistor-color);
+}
+
