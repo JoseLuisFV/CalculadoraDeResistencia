@@ -26,7 +26,7 @@ body {
     display: block;
     margin: 0 auto;
     margin-top: 100px;
-    height: 610px;
+    height: 680px;
     width: 800px;
     padding: 50px 70px;
     border-radius: 12px;
@@ -54,15 +54,20 @@ body {
     margin: 50px auto;
     padding-left: 45px;
     background-color: var(--resistor-color);
-
 }
 
 .band {
     position: relative;
-    height: 100%;
+    height: 250px;
     width: 60px;
     margin-right: 45px;
     background-color: black;
+    border: 1px solid black;
+}
+
+.error {
+    position: absolute;
+    right: 0;
 }
 
 .band span {
@@ -73,9 +78,16 @@ body {
     color: var(--font-color-title);
     text-transform: uppercase;
 }
-.error-band {
-    position: absolute;
-    right: 0;
+
+
+.error {
     background-color: brown;
 }
 
+
+.resistor-calculator__label-result {
+    font-size: 1.8rem;
+    color: var(--font-color-title);
+    font-weight: 700;
+    margin-right: 20px;
+}
