@@ -46,11 +46,36 @@ body {
     color: var(--font-color-text);
 }
 
-.resistor{
-    display: block;
+.resistor {
+    position: relative;
+    display: flex;
     height: 250px;
     width: 610px;
     margin: 50px auto;
+    padding-left: 45px;
     background-color: var(--resistor-color);
+
+}
+
+.band {
+    position: relative;
+    height: 100%;
+    width: 60px;
+    margin-right: 45px;
+    background-color: black;
+}
+
+.band span {
+    position: absolute;
+    top: -30px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--font-color-title);
+    text-transform: uppercase;
+}
+.error-band {
+    position: absolute;
+    right: 0;
+    background-color: brown;
 }
 
