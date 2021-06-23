@@ -1,8 +1,18 @@
-const bandColors = ["black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "gray", "white"];
-const bandMultiplierColors = [...bandColors, "gold", "silver"];
-const bandErrorColors = ["brown", "red", "gold", "silver", "transparent"];
-const resistor = document.getElementById('resistor');
+const bandColors = [
+    ["black", 0], ["brown", 1], ["red", 2], ["orange", 3], 
+    ["yellow", 4], ["green", 5], ["blue", 6], ["violet", 7], 
+    ["gray", 8], ["white", 9]
+];
 
+const bandMultiplierColors = [...bandColors, ["gold", -1], ["silver", -2]];
+
+const bandErrorColors = [
+    ["brown", 1], ["red", 2], 
+    ["gold", 5], ["silver", 10], 
+    ["transparent", 0]
+];
+
+const resistor = document.getElementById('resistor');
 
 const generateBand = (first, last, colors) => {
     const allColors = colors;
@@ -15,60 +25,70 @@ const generateBand = (first, last, colors) => {
         } else if (positionClicked <= 125 && bandPosition > firstColor ) {
             bandPosition -= 1;
         }
-        const color = allColors[bandPosition]
-        return color;
+        const color = allColors[bandPosition][0];
+        const value = allColors[bandPosition][1];
+        return [color, value];
     }
     return changeBandColor;
-
 };
 
-
 const resistorValue = document.getElementById('resistor-value');
-const firstBandColor = generateBand(0, bandColors.length - 1, bandColors); 
-const secondBandColor = generateBand(0, bandColors.length - 1, bandColors);
-const thirdBandColor = generateBand(0, bandColors.length - 1, bandColors); 
-const multiplierBandColor = generateBand(0, bandMultiplierColors.length - 1, bandMultiplierColors);
-const errorBandColor = generateBand(0, bandErrorColors.length -1, bandErrorColors);
+const firstBand = generateBand(0, bandColors.length - 1, bandColors); 
+const secondBand = generateBand(0, bandColors.length - 1, bandColors);
+const thirdBand = generateBand(0, bandColors.length - 1, bandColors); 
+const multiplierBand = generateBand(0, bandMultiplierColors.length - 1, bandMultiplierColors);
+const errorBand = generateBand(0, bandErrorColors.length -1, bandErrorColors);
 
 let bands = {
     "first": {
-        "changeColor": firstBandColor,
+        "changeColor": firstBand,
         "color": "black",
+        "value": 0
     },
     "second": {
-        "changeColor": secondBandColor,
+        "changeColor": secondBand,
         "color": "black",
+        "value": 0
     },
     "third": {
-        "changeColor": thirdBandColor,
+        "changeColor": thirdBand,
         "color": "black",
+        "value": 0
     },
     "multiplier": {
-        "changeColor": multiplierBandColor,
+        "changeColor": multiplierBand,
         "color": "black",
+        "value": 0
     },
     "error": {
-        "changeColor": errorBandColor,
+        "changeColor": errorBand,
         "color": "brown",
+        "value": 1
     },
+}
+
+const setResistor = (bands) => {
+    const f = bands.first.value * 100;
+    const s = bands.second.value * 10;
+    const t = bands.third.value * 1;
+    const multiplier = `x10^${bands.multiplier.value}` 
+    const error =  `${bands.error.value}%`
+    const value = f + s + t;
+    return `${value}  ${multiplier}  ${error}`;
 }
 
 resistor.addEventListener('click', (e) => {
     const bandClicked = e.target;
     const positionClicked = e.offsetY;
-    console.log(e.target.classList.item(1));
-    const nameClass = e.target.classList.item(1)
-    if (nameClass != undefined){
-        const bandColor = bands[nameClass].changeColor(positionClicked); 
-        bandClicked.setAttribute("style", `background-color: ${bandColor};`);
-        bands[nameClass].color = bandColor
-        console.log(bands[nameClass].color);
+    const clickedName = e.target.classList.item(1);
+    if (clickedName != undefined){
+        const band = bands[clickedName].changeColor(positionClicked); 
+        bandClicked.setAttribute("style", `background-color: ${band[0]};`);
+        bands[clickedName].color = band[0];
+        bands[clickedName].value = band[1];
+        resistorValue.textContent = setResistor(bands);
     }
-
 });
 
 
-
-
-
-resistorValue.textContent = "Hola";
+resistorValue.textContent = setResistor(bands);

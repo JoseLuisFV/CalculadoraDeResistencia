@@ -68,6 +68,7 @@ body {
 .error {
     position: absolute;
     right: 0;
+    background-color: brown;
 }
 
 .band span {
@@ -79,15 +80,15 @@ body {
     text-transform: uppercase;
 }
 
-
-.error {
-    background-color: brown;
-}
-
-
 .resistor-calculator__label-result {
     font-size: 1.8rem;
     color: var(--font-color-title);
     font-weight: 700;
     margin-right: 20px;
+}
+
+.resistor-calculator__result {
+    font-size: 3.3rem;
+    color: var(--font-color-title);
+    font-weight: 700;
 }
