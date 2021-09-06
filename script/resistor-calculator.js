@@ -21,10 +21,11 @@ const generateBand = (first, last, colors) => {
     let bandPosition = 0;
     const changeBandColor = (positionClicked) => {
         if (positionClicked >= 125 && bandPosition < lastColor ) {
-            bandPosition += 1;
+            bandPosition = bandPosition + 1;
         } else if (positionClicked <= 125 && bandPosition > firstColor ) {
             bandPosition -= 1;
         }
+        
         const color = allColors[bandPosition][0];
         const value = allColors[bandPosition][1];
         return [color, value];
